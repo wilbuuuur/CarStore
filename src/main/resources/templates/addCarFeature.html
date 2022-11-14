@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Developer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<h1>Add feature</h1>
+	<form th:action="@{/car/{id}/features(id=${car.id})}" method="get" enctype="multipart/form-data" >
+	<div class="col-md-6">
+		<div class="panel panel-default">
+		 <div class="panel-heading">Car info</div>
+		 <div class="panel-body" style="padding-left: 5px;">
+			Brand: <b th:text="${car.brand}" /> <br/>
+			Model: <b th:text="${car.model}" /><br/>
+			Color: <b th:text="${car.color}" /><br/>
+			Body type: <b th:text="${car.body} ? ${car.body.name} : ''" /><br/>
+			
+			<br/>Features:
+				<span th:each="feature : ${car.features}">
+					<br/>&nbsp;&nbsp;<b th:text="${feature.name}" />
+				</span>
+				<br/>
+				</div>
+		</div>	
+			<div class="col-md-13">
+			<select class="form-control" name="featureId">
+				<option th:each="feature : ${features}" 
+					th:value="${feature.featureid}" 
+					th:text="${feature.name}">Feature</option>
+			</select>
+			</div>
+			<hr>
+			<input type="submit" name="action" class="btn btn-primary" value="Save"></input>
+			<input type="submit" name="action" class="btn btn-secondary" value="Cancel"></input>
+	</div>
+	</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Body Type</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Body types</h1>
+    <table>
+		<tr>
+		    <th>Name</th>
+		    
+		</tr>  
+    	<tr th:each = "body : ${bodys}">
+    		<td th:text="${body.name}"></td>
+    		<td><a th:href="@{/getbodycars/{id}(id=${body.id})}">Show all cars</a></td> 
+  		
+    	</tr>
+     </table>
+	<a href="/addbody">Add body type</a>
+	<br>
+	<a href="/cars">Car List</a>
+	
+</body>
+</html>

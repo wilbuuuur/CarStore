@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit car</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<h1>Edit car</h1>
+	<div class="col-md-4">
+		<form th:object="${car}" th:action="@{/saveEditedCar}" action="#" method="post">
+			<input type="hidden" th:field="*{id}" class="form-control"/>
+			
+			<input type="text" th:field="*{brand}" class="form-control"
+				placeholder="Brand" />
+			<div th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Error</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input type="text" th:field="*{model}" class="form-control"
+				placeholder="Model" />
+			<div th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Error</div>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input type="text" th:field="*{color}" class="form-control"
+				placeholder="Color" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+				
+			<input type="number" th:field="*{year}" min="1886" class="form-control"
+				placeholder="Year" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input type="number" th:field="*{price}"  min="1" class="form-control"
+				placeholder="Price" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="deplist">Body type</label>
+			 <select id="deplist" th:field="*{body}" class="form-control">
+       			<option th:each="body: ${bodys}" th:value="${body.bodyid}" th:text="${body.name}"></option>
+    		</select>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" class="btn btn-primary" value="Save"></input>
+		</form>
+	</div>
+</div>
+</body>
+</html>
