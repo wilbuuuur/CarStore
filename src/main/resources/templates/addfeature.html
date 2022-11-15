@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Body types</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -24,10 +24,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	<h2>Body Types</h2>
 	<div class="col-md-4">
 	
-		<form th:object="${body}" th:action="@{savebody}" action="#" method="post">
+		<form th:object="${feature}" th:action="@{savefeature}" action="#" method="post">
 		  	
 		  	
-			<input type="text" th:field="*{name}" class="form-control" placeholder="Body type name"/>
+			<input type="text" th:field="*{name}" class="form-control" placeholder="Feature name"/>
 			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
 			<div style="clear: both; display: block; height: 10px;"></div>
 		  	

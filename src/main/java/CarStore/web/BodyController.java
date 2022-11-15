@@ -1,5 +1,7 @@
 package CarStore.web;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import CarStore.domain.Body;
 import CarStore.domain.BodyRepository;
 import CarStore.domain.CarRepository;
-
 
 
 @Controller
@@ -53,5 +54,18 @@ public class BodyController {
 		public String deleteCar(@PathVariable("id") Long id, Model model) {
 			bodyRepository.deleteById(id);
 			return "redirect:/bodylist";
+		}
+		
+		@GetMapping("getbodycars/{id}")
+		public String getOwnerCars(@PathVariable("id") Long id, Model model) {
+			Optional<Body> body = bodyRepository.findById(id);
+			if (body.isPresent()) {
+				model.addAttribute("bodycars", carRepository.findByBodyId(id));
+				model.addAttribute("body", body.get());
+				return "bodycars";
+		
+			} else {
+				return "redirect:ownerList";
+			}
 		}
 }

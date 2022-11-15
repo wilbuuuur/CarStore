@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<div class="row justify-content-end" style="background-color:powderblue;">
+    <div class="col-4">
+      <h1 class="d-flex justify-content-center">Car Store</h1>
+    </div>
+    <div class="col-4">
+      <form th:action="@{/logout}" method="post" class="d-flex justify-content-end">
+			<input type="submit" value="Sign Out" class="btn btn-danger btn-sm" style="margin:1px"/>
+			<a th:href="@{/login}" class="btn btn-primary btn-sm" style="margin:1px">Sign in</a>
+		</form>
+    </div>
+  </div>
+  
+    <div class="d-flex justify-content-center">
+    
+     <a href="/cars" class="btn btn-primary" style="margin: 10px">Car List</a>
+     <a href="/bodylist" class="btn btn-primary" style="margin: 10px">Body Type List</a>
+     <a href="/signup" class="btn btn-primary" style="margin: 10px">New User</a>
+	</div> 
+     
+</body>
+</html>

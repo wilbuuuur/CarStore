@@ -3,14 +3,16 @@ package CarStore.domain;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Feature {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)	
-	private long featureid;
+	private Long featureid;
 	
     @Column(name="featurename")
+    @Size(min=1, max=50)
 	private String name; 
      
     @ManyToMany(mappedBy = "features")    
@@ -23,7 +25,7 @@ public class Feature {
 		this.name = name;
 	}     
 
-    public long getFeatureid() {
+    public Long getFeatureid() {
 		return featureid;
 	}
 

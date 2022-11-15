@@ -1,6 +1,5 @@
 package CarStore;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
@@ -31,15 +30,16 @@ public class CarStoreApplication {
 		return (args) -> {
 			
 			
-			Stream.of("Audio System With Steering Mounted Controls",
+			Stream.of("Steering Mounted Controls",
 					"Central locking with Keyless entry",
+					"Keyless Start",
 					"Dual Front Airbags",
 					"ABS & EBD",
 					"Rear Defogger",
 					"Rear Parking Sensors",
-					"Multi-Purpose Vehicle",
-					"Electrically Adjustable ORVMs",
-					"Front Power Windows").forEach(name -> {
+					"Front Parking Sensors",
+					"Electrically Adjustable Seats",
+					"Power Windows").forEach(name -> {
 				featureRepository.save(new Feature(name));
 			});
 			
@@ -76,7 +76,8 @@ public class CarStoreApplication {
 			// (user/user, admin/admin)
 			User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			User user2 = new User("admin", "$2a$08$bCCcGjB03eulCWt3CY0AZew2rVzXFyouUolL5dkL/pBgFkUH9O4J2", "ADMIN");
-			userRepository.saveAll(Arrays.asList(user1, user2));
+			userRepository.save(user1);
+			userRepository.save(user2);
 		};
 	}
 }

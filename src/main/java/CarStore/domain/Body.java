@@ -12,7 +12,7 @@ public class Body {
 	@Id
 	@JsonIgnoreProperties("body")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long bodyid;
+	private Long id;
 	
 	@Size(min=1, max=50)
 	private String name;
@@ -28,11 +28,11 @@ public class Body {
 	}
 
 	public Long getBodyid() {
-		return bodyid;
+		return id;
 	}
 
-	public void setBodyid(Long bodyid) {
-		this.bodyid = bodyid;
+	public void setBodyid(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -53,7 +53,7 @@ public class Body {
 
 	@Override
 	public String toString() {
-		return "Category [bodyid=" + bodyid + ", name=" + name + "]";
+		return "Category [id=" + id + ", name=" + name + "]";
 	}
 	
 	

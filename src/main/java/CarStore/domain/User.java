@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity(name="users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
@@ -18,10 +19,10 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private String role;
-
+    
     public User() {
     }
-    
+
 	public User(String username, String passwordHash, String role) {
 		super();
 		this.username = username;
@@ -60,5 +61,5 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-		 
+
 }

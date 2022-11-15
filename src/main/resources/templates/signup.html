@@ -6,8 +6,17 @@
 	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
+
+<div class="row justify-content-end" style="background-color:powderblue;">
+    <div class="col-4">
+      <h1 class="d-flex justify-content-center">Car Store</h1>
+    </div>
+    <div class="col-4">
+    </div>
+  </div>
+
 	<div class="container">
-		<h1>Sign-up</h1>
+		<h1>Create new user</h1>
 		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
 			<input type="text" th:field="*{username}" class="form-control"
 				placeholder="Username" />
@@ -22,7 +31,8 @@
 			<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Password Match Error</p>
 			
 			<div style="clear: both; display: block; height: 10px;"></div>	
-			<input type="submit" class="btn btn-primary" value="Save"></input>		
+			<input type="submit" class="btn btn-primary" value="Save"></input>
+			<a href="/" class="btn btn-primary" style="margin: 10px">Back</a>
 		</form>
 	</div>
 </body>

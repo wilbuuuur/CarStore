@@ -7,22 +7,27 @@
 	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-<div class="container">
-	<div class="col-md-4">
-		<h1>Cars</h1>
-	</div>
-	<div class="col-md-4">
-		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
-		
-	</div>
-	<div class="col-md-4" style="padding:20px 0">
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" class="btn btn-danger"/>
-			<a th:href="@{/login}" class="btn btn-primary">Sign in</a>
+
+<div class="row justify-content-end" style="background-color:powderblue;">
+    <div class="col-4">
+      <h1 class="d-flex justify-content-center">Car Store</h1>
+    </div>
+    <div class="col-4">
+      <form th:action="@{/logout}" method="post" class="d-flex justify-content-end">
+			<input type="submit" value="Sign Out" class="btn btn-danger btn-sm" style="margin:1px"/>
+			<a th:href="@{/login}" class="btn btn-primary btn-sm" style="margin:1px">Sign in</a>
 		</form>
+    </div>
+    <br>
+    
+  </div>
+  
+<div style= "background-color:powderblue; padding: 20px">
+	
+		<h3 th:inline="text" >Welcome [[${#httpServletRequest.remoteUser}]]</h3>
 	</div>
     
-    <div style="padding:0 20px">
+    <div>
     <table class="table table-striped">
 		<tr>
 		    <th>Brand</th>
@@ -32,7 +37,7 @@
 		    <th>Year</th>
 		    <th>Price</th>
 		    <th>Features</th>
-		    <th>Actions</th>
+		    <th sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')" >Actions</th>
 		</tr>  
     	<tr th:each = "car : ${cars}">
     		<td th:text="${car.brand}"></td>
@@ -44,13 +49,13 @@
     		
     		<td>
 				<span th:each="feature,iterStat : ${car.features}">
-					<span th:text="${feature.name}"/><th:block th:if="${!iterStat.last}"><br></th:block>
+					<span th:text="${feature.name}"/><th:block th:if="${!iterStat.last}">,<br></th:block>
 				</span>    		
     		</td>
     		<td>
-    			<a th:href="@{/addCarFeature/{id}(id=${car.id})}" class="btn btn-primary btn-sm">Add Feature</a>
-    			<a th:href="@{/edit/{id}(id=${car.id})}" class="btn btn-primary btn-sm">Edit</a>
-    			<a th:href="@{/delete/{id}(id=${car.id})}" class="btn btn-danger btn-sm">Delete</a>
+    			<a sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')" th:href="@{/addCarFeature/{id}(id=${car.id})}" class="btn btn-primary btn-sm">Add Feature</a>
+    			<a sec:authorize="hasAuthority('ADMIN') or hasAuthority('USER')" th:href="@{/edit/{id}(id=${car.id})}" class="btn btn-primary btn-sm">Edit</a>
+    			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${car.id})}" class="btn btn-danger btn-sm">Delete</a>
     		</td>
     	</tr>
     </table>
@@ -58,7 +63,9 @@
     
     <a href="/bodylist" class="btn btn-primary">Body Types</a>
     
+    <a href="/featurelist" class="btn btn-primary">Feature List</a>
+    
 	</div>    
-</div>
+
 </body>
 </html>

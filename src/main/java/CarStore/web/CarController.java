@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,10 +34,11 @@ public class CarController {
 	@Autowired
 	private BodyRepository bodyRepository;
 	
-	@RequestMapping("/login")
-	public String login() {
-    	return "login";
-    }	
+	
+	@GetMapping(value = { "/main", "/" })
+	public String showMainPage() {
+		return "mainPage";
+	}	
 	
 	@RequestMapping("/cars")
 	public String index(Model model) {
@@ -108,7 +110,7 @@ public class CarController {
 			carRepository.save(car.get());
 			model.addAttribute("car", featureRepository.findById(id));
 			model.addAttribute("features", featureRepository.findAll());
-			return "redirect:/cars";
+			return "redirect:/addCarFeature/{id}";
 		}
 
 		
