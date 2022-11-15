@@ -18,6 +18,7 @@
 	<div class="col-md-4" style="padding:20px 0">
 		<form th:action="@{/logout}" method="post">
 			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+			<a th:href="@{/login}" class="btn btn-primary">Sign in</a>
 		</form>
 	</div>
     
@@ -28,9 +29,9 @@
 		    <th>Model</th>
 		    <th>Body type</th>
 		    <th>Color</th>
-		    <th>Year Of Manufacture</th>
+		    <th>Year</th>
 		    <th>Price</th>
-		    <th>features</th>
+		    <th>Features</th>
 		    <th>Actions</th>
 		</tr>  
     	<tr th:each = "car : ${cars}">
@@ -43,7 +44,7 @@
     		
     		<td>
 				<span th:each="feature,iterStat : ${car.features}">
-					<span th:text="${feature.name}"/><th:block th:if="${!iterStat.last}">,</th:block>
+					<span th:text="${feature.name}"/><th:block th:if="${!iterStat.last}"><br></th:block>
 				</span>    		
     		</td>
     		<td>
@@ -54,6 +55,9 @@
     	</tr>
     </table>
     <a href="/add" class="btn btn-primary">Add Car</a>
+    
+    <a href="/bodylist" class="btn btn-primary">Body Types</a>
+    
 	</div>    
 </div>
 </body>

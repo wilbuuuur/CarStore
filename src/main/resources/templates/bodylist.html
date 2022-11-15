@@ -3,23 +3,29 @@
 <head>
     <title>Body Type</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{../css/bootstrap.min.css}" />
 </head>
 <body>
+<div class="container">
+	<div class="col-md-8">
 	<h1>Body types</h1>
+	</div>
+	<div style="padding:0 20px">
     <table>
 		<tr>
 		    <th>Name</th>
 		    
 		</tr>  
-    	<tr th:each = "body : ${bodys}">
-    		<td th:text="${body.name}"></td>
-    		<td><a th:href="@{/getbodycars/{id}(id=${body.id})}">Show all cars</a></td> 
-  		
+    	<tr th:each = "body : ${bodys}" style="padding:20px 20px">
+    		<td th:text="${body.name}" style="padding:0 20px"></td>
+  			<td><a th:href="@{/deletebody/{id}(id=${body.bodyid})}" class="btn btn-danger btn-sm">Delete</a>
+  			</td>
     	</tr>
      </table>
-	<a href="/addbody">Add body type</a>
-	<br>
-	<a href="/cars">Car List</a>
+    </div>
+	<a href="/addbody" class="btn btn-primary">Add body type</a>
 	
+	<a href="/cars" class="btn btn-primary">Car List</a>
+	</div>
 </body>
 </html>
